@@ -1,6 +1,8 @@
-version: '3.8'
+version: '3'
+name: ${PROJECT_NAME}
 
 services:
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -8,7 +10,46 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+    env_file: .env
     environment:
-      - DEBUG=1
-      - SECRET_KEY=your_secret_key_here
-      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - DJANGO_SETTINGS_MODULE=task_manager.settings
+    depends_on:
+      database:
+        condition: service_healthy
+  
+  grafana:
+    pull_policy: always
+    image: grafana/grafana
+    container_name: ${GRAFANA_CONTAINER_NAME}
+    env_file: .env
+    volumes:
+      - ./database/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+      - grafana_data:/var/lib/grafana
+    ports:
+      - ${GRAFANA_PORT}:${GRAFANA_PORT}
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    pull_policy: always
+    image: postgres:16-alpine
+    container_name: ${POSTGRES_CONTAINER_NAME}
+    env_file: .env
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - ./database/init-tasks-db.sql:/docker-entrypoint-initdb.d/init-tasks-db.sql
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      start_period: 0s
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  grafana_data:
+    name: grafana_data
+  postgres_data:
+    name: postgres_data

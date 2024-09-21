@@ -12,19 +12,23 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install the project dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
+
+# Add PostgreSQL client
+RUN apt-get update && apt-get install -y postgresql-client
+
+# Install psycopg2
+RUN pip install psycopg2-binary
 
 # Copy the project code into the container
 COPY . .
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+# Copy entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Run migrations
-RUN python manage.py migrate
+# Set the entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
 
-# Expose the port the app runs on
-EXPOSE 8000
-
-# Command to run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "task_manager.wsgi:application"]
+# Set the command
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
