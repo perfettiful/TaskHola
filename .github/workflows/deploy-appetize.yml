@@ -22,19 +22,19 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd mobile
+        cd taskhola-mobile
         npm install
 
     - name: Build app
       run: |
-        cd mobile
+        cd taskhola-mobile
         npm run build
 
     - name: Upload to Appetize
       uses: appetizeio/github-action-appetize@v1.0.3
       with:
         apiToken: ${{ secrets.APPETIZE_API_TOKEN }}
-        appFile: mobile/build/app.zip
+        appFile: taskhola-mobile/build/app.zip
 
     - name: Cleanup
       run: rm -rf taskhola-mobile/build
