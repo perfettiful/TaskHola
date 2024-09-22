@@ -1,7 +1,7 @@
-:80 {
-    reverse_proxy web:8000
+monitor.taskhola.app {
+    reverse_proxy grafana:3000
 }
 
-:443 {
+api.taskhola.app {
     reverse_proxy web:8000
 }
