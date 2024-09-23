@@ -25,6 +25,6 @@ jobs:
         run: cd taskhola-mobile && npm run build 
 
       - name: Deploy to Expo
-        run: cd taskhola-mobile && npx expo-cli deploy:ios && npx expo-cli deploy:android
+        run: cd taskhola-mobile && npx expo-cli deploy:ios
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}  
