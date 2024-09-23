@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-ze%*8)dthhym-9%vn@9rrt75xf8^fo8zl_++ym%_hjcf1!3bpf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'web']
+ALLOWED_HOSTS = ['api.taskhola.app','localhost', '127.0.0.1', 'web']
 
 
 # Application definition
