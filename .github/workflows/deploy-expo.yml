@@ -19,12 +19,12 @@ jobs:
           node-version: '14'  
 
       - name: Install dependencies
-        run: npm install
+        run: cd taskhola-mobile && npm install
 
       - name: Build the project
-        run: npm run build 
+        run: cd taskhola-mobile && npm run build 
 
       - name: Deploy to Expo
-        run: npx expo-cli deploy:ios && npx expo-cli deploy:android
+        run: cd taskhola-mobile && npx expo-cli deploy:ios && npx expo-cli deploy:android
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}  
