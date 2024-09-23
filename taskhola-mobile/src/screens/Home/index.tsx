@@ -24,7 +24,7 @@ export function Home() {
 
   useEffect(() => {
     fetchTasksData();
-  }, []);
+  }, [taskCounter]);
 
   const fetchTasksData = async () => {
     try {
@@ -95,9 +95,9 @@ export function Home() {
   };
 
   const renderItem = ({ item }: { item: Task }) => (
-    <TaskItem
+    <TaskItemSwipable
       key={item.task_description}
-      name={item}
+      task={item}
       isDone={item.completed}
       onCheckPressed={() => handleTaskDoneCounter(item.task_id)}
       onRemove={() => handleTaskRemove(item.task_id)}
