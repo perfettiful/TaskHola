@@ -23,7 +23,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "package": "dev.nathanperfetti.taskhola-mobile"
+      "package": "com.nathanperfetti.taskhola"
     },
     "web": {
       "favicon": "./assets/favicon.png"

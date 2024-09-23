@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
-    "build": "expo build:android && expo build:ios"
+    "build": "eas build -p android --non-interactive && eas build -p ios --non-interactive"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.6",
