@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
 	},
 	todoContainer: {
 		flexDirection: 'row',
-		backgroundColor: '#eb6534'
+		backgroundColor: '#1E90FF'
 	},
 	doneContainer: {
 		flexDirection: 'row',

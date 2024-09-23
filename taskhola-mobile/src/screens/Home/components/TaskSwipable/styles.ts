@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		backgroundColor: '#1A1A1A',
+		backgroundColor: 'pink',
 		borderRadius: 5,
 		flexDirection: 'row',
 		marginTop: 10,
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
 	checkbox: {
 		alignSelf: 'center',
 		borderRadius: 999,
-		borderColor: '#eb6534',
+		borderColor: '#1E90FF',
 		marginLeft: 16,
 	},
 	actionButtonsContainer: {

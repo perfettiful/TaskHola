@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
 	checkbox: {
 		alignSelf: 'center',
 		borderRadius: 999,
-		borderColor: '#eb6534',
+		borderColor: '#1E90FF',
 		marginLeft: 16,
 	},
 	actionButtonsContainer: {

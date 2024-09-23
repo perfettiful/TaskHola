@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Image, FlatList, Text, TextInput, TouchableOpacity, Animated, View } from 'react-native';
 import { Clipboard } from '@assets/index';
 import { TaskItem } from './components/Task';
-import { TaskSwipable } from './components/TaskSwipable';
+import TaskItemSwipable from './components/TaskSwipable';
 import { Header } from '../../components/Header';
 import { AntDesign } from '@expo/vector-icons';
 import { Info } from '../../components/Info';
@@ -30,7 +30,7 @@ export function Home() {
     try {
       const data = await fetchTasks();
 
-      const dataFiltered = data.filter((item: Task) => !item.completed && !item.deleted);
+      const dataFiltered = data.filter((item: Task) => !item.deleted);
 
       setTaskCounter(dataFiltered.length);
       setTasks(dataFiltered);
@@ -51,7 +51,7 @@ export function Home() {
     try {
       const newTask = await createTask(task);
       setTasks([...tasks, newTask]);
-
+      setTask('');
       setTaskCounter(prevState => prevState + 1);
 
     } catch (error) {
@@ -62,11 +62,15 @@ export function Home() {
 
   const handleTaskRemove = async (taskId: string) => {
     try {
+      const taskToComplete = tasks.find(task => task.task_id === taskId);
+
+      if (taskToComplete && !taskToComplete.completed) {
+        setTaskCounter(prevState => Math.max(prevState - 1, 0));
+      }
 
       await removeTask(taskId);
 
       setTasks(prevState => prevState.filter(item => item.task_id !== taskId));
-      setTaskCounter(prevState => Math.max(prevState - 1, 0));
 
     } catch (error) {
       console.error('Error removing task:', error);
@@ -80,7 +84,7 @@ export function Home() {
 
       setTaskCounter(prevState => Math.max(prevState - 1, 0));
 
-      setTasks(prevState => prevState.map(task => 
+      setTasks(prevState => prevState.map(task =>
         task.task_id === taskId ? { ...task, completed: true } : task
       ));
 
@@ -91,9 +95,15 @@ export function Home() {
   };
 
   const renderItem = ({ item }: { item: Task }) => (
-    <TaskSwipable item={item} onDelete={handleTaskRemove} />
+    <TaskItem
+      key={item.task_description}
+      name={item}
+      isDone={item.completed}
+      onCheckPressed={() => handleTaskDoneCounter(item.task_id)}
+      onRemove={() => handleTaskRemove(item.task_id)}
+    />
   );
-  
+
   return (
     <View style={styles.container}>
       <Header />
@@ -121,15 +131,7 @@ export function Home() {
       <FlatList
         data={tasks}
         keyExtractor={item => item.task_id}
-        renderItem={({ item }) => (
-          <TaskItem
-            key={item.task_description}
-            name={item}
-            isDone={item.completed}
-            onCheckPressed={() => handleTaskDoneCounter(item.task_id)}
-            onRemove={() => handleTaskRemove(item.task_id)}
-          />
-        )}
+        renderItem={renderItem}
         showsVerticalScrollIndicator={true}
 
         ListEmptyComponent={() => (

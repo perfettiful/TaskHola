@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   emptyListBold: {
-    color: '#808080',
+    color: '#FFFF1E',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
