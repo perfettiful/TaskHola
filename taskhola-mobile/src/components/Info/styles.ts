@@ -24,13 +24,17 @@ export const styles = StyleSheet.create({
 		marginBottom: 5,
 		width: '100%',
 	},
-	infoContainer: {
+	todoContainer: {
 		flexDirection: 'row',
+		backgroundColor: '#eb6534'
+	},
+	doneContainer: {
+		flexDirection: 'row',
+		backgroundColor: '#4EA8DE'
 	},
 	taskCounter: {
-		backgroundColor: '#333333',
 		borderRadius: 8,
-		color: '#F0F0F0',
+		color: '#000000',
 		fontSize: 14,
 		fontWeight: 'bold',
 		marginHorizontal: 8,

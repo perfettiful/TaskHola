@@ -7,7 +7,6 @@ import { Home } from '@screens/Home';
 const Stack = createStackNavigator<RootStackParamList>();
 
 export type RootStackParamList = {
-  Language: undefined;
   Home: undefined;
 };
 

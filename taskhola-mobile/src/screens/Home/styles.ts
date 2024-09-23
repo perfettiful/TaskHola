@@ -50,4 +50,17 @@ export const styles = StyleSheet.create({
     marginTop: 16,
     padding: 16,
   },
+  deleteButton: {
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    width: 75,
+    height: '100%',
+  },
+  deleteText: {
+    color: 'white',
+    fontWeight: 'bold',
+    padding: 20,
+  },
+  
 });

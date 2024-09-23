@@ -4,19 +4,15 @@ import { styles } from './styles';
 
 type Props = {
   taskCounter: number;
-  taskDoneCounter: number;
 }
 
-export function Info({ taskCounter, taskDoneCounter }: Props) {
+export function Info({ taskCounter }: Props) {
 
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.infoContainer}>
-          <Text style={styles.taskCounter}>{taskCounter}</Text>
-        </View>
-        <View style={styles.infoContainer}>
-          <Text style={styles.taskCounter}>{taskDoneCounter}</Text>
+        <View style={styles.todoContainer}>
+          <Text style={styles.taskCounter}>Tasks Todo: {taskCounter}</Text>
         </View>
       </View>
       <View style={styles.horizontalBar} />
