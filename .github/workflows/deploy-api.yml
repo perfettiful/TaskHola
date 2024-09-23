@@ -24,9 +24,9 @@ jobs:
         USER: ${{ secrets.SERVER_USER }}
         PASS: ${{ secrets.SERVER_PASS }}
       run: |
-        sshpass -p $PASS scp -o StrictHostKeyChecking=no -r backend/* ${USER}@${HOST}:/path/to/backend/
+        sshpass -p $PASS scp -o StrictHostKeyChecking=no -r backend/* ${USER}@${HOST}:/var/www/taskhola/backend/
         sshpass -p $PASS ssh -o StrictHostKeyChecking=no ${USER}@${HOST} '
-          cd /path/to/backend
+          cd /var/www/taskhola/backend/
           docker-compose down
           docker-compose up -d --build
         '
