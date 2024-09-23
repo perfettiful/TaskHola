@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Animated, PanResponder } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { styles } from './styles';
 
@@ -22,6 +22,7 @@ export function TaskItem({ name, isDone, onRemove, onCheckPressed }: Props) {
         <Checkbox
           style={styles.checkbox}
           value={isChecked}
+          disabled={isChecked}
           onValueChange={(value) => {
             if (value) {
               setChecked(true);
@@ -38,7 +39,7 @@ export function TaskItem({ name, isDone, onRemove, onCheckPressed }: Props) {
         ) : (
           <Text style={styles.taskAdd}>{name.task_description}</Text>
         )}
-        
+
         <View style={styles.actionButtonsContainer}>
           <TouchableOpacity style={styles.button} onPress={onRemove}>
             <AntDesign name='left' size={12} color={'#808080'} />

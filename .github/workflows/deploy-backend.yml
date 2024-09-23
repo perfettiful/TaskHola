@@ -1,4 +1,4 @@
-name: Deploy Backend to EC2
+name: Deploy Backend to Ubuntu Server
 
 on:
   push:
@@ -15,26 +15,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: your-aws-region
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
 
-    - name: Deploy to EC2
+    - name: Deploy to Ubuntu Server
       env:
-        PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-        HOST: ${{ secrets.EC2_HOST }}
-        USER: ubuntu
+        HOST: ${{ secrets.SERVER_HOST }}
+        USER: ${{ secrets.SERVER_USER }}
+        PASS: ${{ secrets.SERVER_PASS }}
       run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        scp -i private_key -o StrictHostKeyChecking=no -r backend/* ${USER}@${HOST}:/path/to/backend/
-        ssh -i private_key -o StrictHostKeyChecking=no ${USER}@${HOST} '
+        sshpass -p $PASS scp -o StrictHostKeyChecking=no -r backend/* ${USER}@${HOST}:/path/to/backend/
+        sshpass -p $PASS ssh -o StrictHostKeyChecking=no ${USER}@${HOST} '
           cd /path/to/backend
           docker-compose down
           docker-compose up -d --build
         '
 
     - name: Clean up
-      run: rm -f private_key
+      run: sudo apt-get remove sshpass

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Image, FlatList, Text, TextInput, TouchableOpacity, Animated, View } from 'react-native';
 import { Clipboard } from '@assets/index';
 import { TaskItem } from './components/Task';
+import { TaskSwipable } from './components/TaskSwipable';
 import { Header } from '../../components/Header';
 import { AntDesign } from '@expo/vector-icons';
 import { Info } from '../../components/Info';
@@ -65,7 +66,7 @@ export function Home() {
       await removeTask(taskId);
 
       setTasks(prevState => prevState.filter(item => item.task_id !== taskId));
-      setTaskCounter(prevState => prevState - 1);
+      setTaskCounter(prevState => Math.max(prevState - 1, 0));
 
     } catch (error) {
       console.error('Error removing task:', error);
@@ -77,7 +78,7 @@ export function Home() {
     try {
       await completeTask(taskId);
 
-      setTaskCounter(prevState => prevState - 1);
+      setTaskCounter(prevState => Math.max(prevState - 1, 0));
 
       setTasks(prevState => prevState.map(task => 
         task.task_id === taskId ? { ...task, completed: true } : task
@@ -88,6 +89,10 @@ export function Home() {
       Alert.alert('Error', 'Failed to complete task. Please try again.');
     }
   };
+
+  const renderItem = ({ item }: { item: Task }) => (
+    <TaskSwipable item={item} onDelete={handleTaskRemove} />
+  );
   
   return (
     <View style={styles.container}>
