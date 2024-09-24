@@ -118,6 +118,7 @@ TaskHola is a simple task manager mobile application built with the Django REST 
 0. **Login and Configure Expo Account on [Expo](https://expo.dev/)**
 
 1. **Generaate a Production Build:**
+- Run `npm run build` to create a production build
 
 2. **Ensure you have your environment variables set for production.**
    - `deploy-exp.yml` workflow uses SSH for deployment, ensure you have the following secrests set in your Github repository:
