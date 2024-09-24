@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
 		marginLeft: 16,
 	},
 	taskDone: {
-		color: '#808080',
 		flex: 1,
 		fontSize: 16,
 		marginLeft: 16,
@@ -47,6 +46,7 @@ export const styles = StyleSheet.create({
 	item: {
 		flexDirection: "row",
 		justifyContent: "space-between",
+		alignItems: "center",
 		flex: 1,
 		padding: 10,
 		borderTopWidth: 1,

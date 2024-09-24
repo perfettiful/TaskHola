@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
 		width: '100%',
 	},
 	logo: {
-		height: 32,
-		width: 111,
+		height: 50,
+		width: 240,
 	},
 });

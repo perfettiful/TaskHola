@@ -15,9 +15,7 @@ type Props = {
 }
 
 export default function TaskItemSwipable({ task, isDone, onRemove, onCheckPressed }: Props) {
-  const [isChecked, setChecked] = useState(false);
-
-  console.log('-- task', { task })
+  const [isChecked, setChecked] = useState(isDone);
 
   const translateX = useRef(new Animated.Value(0)).current;
 
@@ -73,11 +71,13 @@ export default function TaskItemSwipable({ task, isDone, onRemove, onCheckPresse
               }
             }}
           />
-          {isChecked ? (
+
+          {(isChecked || isDone) ? (
             <Text style={styles.taskDone}>{task.task_description}</Text>
           ) : (
             <Text style={styles.taskAdd}>{task.task_description}</Text>
           )}
+          
         <AntDesign name='left' size={24} color={'white'} />
         </View>
         <TouchableOpacity

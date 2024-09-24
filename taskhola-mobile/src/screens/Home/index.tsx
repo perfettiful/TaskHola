@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Image, FlatList, Text, TextInput, TouchableOpacity, Animated, View } from 'react-native';
 import { Clipboard } from '@assets/index';
-import { TaskItem } from './components/Task';
 import TaskItemSwipable from './components/TaskSwipable';
 import { Header } from '../../components/Header';
 import { AntDesign } from '@expo/vector-icons';
@@ -30,10 +29,11 @@ export function Home() {
     try {
       const data = await fetchTasks();
 
-      const dataFiltered = data.filter((item: Task) => !item.deleted);
+      const dataDisplayed = data.filter((item: Task) => !item.deleted).sort((a: { completed: any; }, b: { completed: any; }) => Number(a.completed) - Number(b.completed));;
+      setTasks(dataDisplayed);
 
-      setTaskCounter(dataFiltered.length);
-      setTasks(dataFiltered);
+      const dataCounted = data.filter((item: Task) => !item.deleted && !item.completed);
+      setTaskCounter(dataCounted.length);
     } catch (error) {
       console.error('Error fetching tasks:', error);
       Alert.alert('Error', 'Failed to fetch tasks. Please try again.');
@@ -111,7 +111,7 @@ export function Home() {
       <View style={styles.form}>
         <TextInput
           style={styles.input}
-          placeholder="Add a task to do ..."
+          placeholder="Add a task to be done ..."
           keyboardAppearance='dark'
           autoCapitalize='words'
           keyboardType='default'
