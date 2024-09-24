@@ -166,16 +166,17 @@ TaskHola is a simple task manager mobile application built with the Django REST 
 
 ## Contact & Connect
 
-<div style="display: flex;felx-direction:row; align-items: center;">
-   <div style="display: flex;flex-direction: column; justify-contents: flex-start; align-items: start;">
+<div>
+   <div >
       <a href="https://www.linkedin.com/in/nathanperfetti/">
-         <img src="./assets/profile-pic.png" alt="Nathan Perfetti" width="100" height="100" style="display: block; border-radius: 50%; margin-right: 40px;margin-bottom: 20px;">
+         <img src="./assets/profile-pic.png" alt="Nathan Perfetti" >
+         <br />
          <strong>Nathan Perfetti, <br  /> Full Stack Developer</strong>  
       </a>
   </div>
-
+<br />
   <div>
-    <ul style="padding-left: 50px">
+    <ul >
       <li>Find me online: <a href="https://nathanperfetti.dev">https://nathanperfetti.dev</a></li>
       <li>Find me on Github: <a href="https://github.com/perfettiful">@perfettiful</a></li>
       <li>Find me on LinkedIn: <a href="https://www.linkedin.com/in/nathanperfetti/">@nathanperfetti</a></li>
