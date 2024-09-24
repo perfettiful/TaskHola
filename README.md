@@ -132,7 +132,7 @@ TaskHola is a simple task manager mobile application built with the Django REST 
 
 ## Backend Production Setup
 
-0. Provision your choice or Virtual Private Server (VPS)
+0. Provision your choice of Virtual Private Server (VPS)
    - I recommend Ubuntu on [AWS EC2](https://aws.amazon.com/ec2/)
 
 1. Configure Firewall and Security Groups for SSH and HTTP/HTTPS
