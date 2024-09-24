@@ -22,9 +22,16 @@ TaskHola is a simple task manager mobile application built with the Django REST 
 
 ## Installation
 
+### Prerequisites
+- Docker and Docker Compose
+- Node.js and npm
+- Expo CLI
+- EAS CLI
+- iOS Simulator or Android Emulator
+
 ### React Native App Setup
 
-1. **Clone the repository:**
+0. **Clone the repository:**
    ```bash
    git clone https://github.com/perfettiful/TaskHola.git
    ```
@@ -32,42 +39,42 @@ TaskHola is a simple task manager mobile application built with the Django REST 
    cd TaskHola/taskhola-mobile
    ```
 
-2. **Install dependencies:**
+1. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Install EAS CLI:**
+2. **Install EAS CLI:**
    ```bash
    npm install -g eas-cli
    ```
 
-4. **Configure EAS:**
+3. **Configure EAS:**
    ```bash
    eas build:configure
    ```
 
-5. **Run the app:**
+4. **Run the app:**
    ```bash
    npm run start:dev
    ```
-6. **Run tests:**
+5. **Run tests:**
    ```bash
    npm run test
    ```
-7. **Create a Production Build:**
+6. **Create a Production Build:**
    ```bash
-   npm run buld
+   npm run build
    ```
 
 ### Django Backend Setup with Docker
 
-1. **Navigate to the backend directory:**
+0. **Navigate to the backend directory:**
    ```bash
    cd TaskHola/taskhola-backend
    ```
 
-2. **Copy the example environment file:**
+1. **Copy the example environment file:**
    ```bash
    cp .env.example .env
    ```
@@ -100,13 +107,29 @@ TaskHola is a simple task manager mobile application built with the Django REST 
 
 ### Accessing Grafana Locally
 
-1. To access Grafana locally, open your web browser and navigate to: `http://localhost:3000`
+0. To access Grafana locally, open your web browser and navigate to: `http://localhost:3000`
 
-2. The default login credentials are:
+1. The default login credentials are:
    - **Username:** <i>set in .env file</i>
    - **Password:** <i>set in .env file</i>
 
-## Production Setup
+## React Native App Production Setup
+
+0. **Login and Configure Expo Account on [Expo](https://expo.dev/)**
+
+1. **Generaate a Production Build:**
+
+2. **Ensure you have your environment variables set for production.**
+   - `deploy-exp.yml` workflow uses SSH for deployment, ensure you have the following secrests set in your Github repository:
+   - `EXPO_TOKEN`
+
+3. **Deploy the Production Build:**
+   - Deploy on trigger using `deploy-exp.yml` workflow
+
+4. **Access the Production Build in Expo Dashboard:**
+   - [Expo Dashboard](https://expo.dev/)
+
+## Backend Production Setup
 
 0. Provision your choice or Virtual Private Server (VPS)
    - I recommend Ubuntu on [AWS EC2](https://aws.amazon.com/ec2/)
