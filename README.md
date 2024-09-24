@@ -17,7 +17,7 @@ TaskHola is a simple task manager mobile application built with the Django REST 
 - ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white) **PostgreSQL** as the database
 - ![Django](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white) **Django REST Framework** for the backend RESTful API
 - ![Expo](https://img.shields.io/badge/Expo-1B1F23?logo=expo&logoColor=white) **Expo** with React Native for a cross-platform mobile app
-- ![Grafana](https://img.shields.io/badge/Grafana-F46800?logo=grafana&logoColor=white) **Grafana** for monitoring and database managemenrt
+- ![Grafana](https://img.shields.io/badge/Grafana-F46800?logo=grafana&logoColor=white) **Grafana** for monitoring and database management
 
 
 ## Installation
